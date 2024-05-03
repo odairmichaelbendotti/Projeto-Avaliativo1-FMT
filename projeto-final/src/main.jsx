@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Dashboard } from './pages/Dashboard/index.jsx'
 import { Beneficiarios } from './pages/Beneficiarios/index.jsx'
 import { Informacoes } from './pages/Informacoes/index.jsx'
+import { Login } from './pages/Login/index.jsx'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: 'informacoes',
         element: <Informacoes />
+      },
+      {
+        path: 'login',
+        element: <Login />
       }
     ]
   }

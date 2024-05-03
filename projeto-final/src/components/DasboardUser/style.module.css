@@ -46,7 +46,35 @@
 .dashboardUserProfileInternBox{
     display: flex;
     justify-content: space-between;
-    min-width: 400px;
+    min-width: 70%;
+}
+
+.dashboardUserProfileCoordinatesText{
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.dashboardUserProfileCoordinates{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 5px;
+    border-radius: 10px;
+    gap: 5px;
+}
+
+.divCoordinatesIcon{
+    display: flex;
+    justify-content: center;
+}
+
+.textCoordinatesIcon{
+    text-transform: uppercase;
+    font-size: 12px;
 }
 
 .dashboardUserProfileInternStatusActive{
@@ -134,46 +162,47 @@
     padding: 30px 40px;
 }
 
-.dashboardOrdersTable{
+.dashboardUserTable{
     width: 100%;
-    font-size: 10px;
-    text-transform: uppercase;
-    color: grey;
     margin-top: 20px;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.dashboardUserTableHeader{
+    border-bottom: 1px solid rgba(128, 128, 128, 0.155);
+}
+
+.dashboardUserInterHeader{
+    font-size: 10px;
+    color: rgba(128, 128, 128, 0.729);
+    text-transform: uppercase;
     padding-bottom: 10px;
 }
 
-.dashboardOrdersBody{
-    text-align: center;
-    background-color: rgb(234, 234, 234);
-    color: rgb(62, 61, 61);
+.dashboardUserTableBody{
+    border-bottom: 1px solid rgba(128, 128, 128, 0.155);
 }
 
-.dashboardOrdersData{
+.dashboardUserInterData{
+    font-size: 10px;
+    color: black;
     padding: 10px 0px;
 }
 
-.dashboardOrdersDataType{
-    gap: 10px;
+.dashboardUserInterDataChange{
     font-size: 15px;
-    padding: 10px 0px;
+    color: grey;
 }
 
-.dashboardOrdersDataType i {
-    margin: 0 5px; /* Espaço de 5px de cada lado */
+.dashboardUserInterData i {
+    margin-right: 20px; /* Adiciona margem à direita de cada ícone */
 }
 
-.dashboardOrdersDataStatus{
-    gap: 10px;
-    font-size: 15px;
-    padding: 10px 0px;
+.dashboardUserInterData i:last-child {
+    margin-right: 0; /* Remove a margem do último ícone para evitar espaçamento extra no fim */
 }
 
-.dashboardOrdersDataStatus i {
-    margin: 0 5px; /* Espaço de 5px de cada lado */
+.dashboardUserInterDataChangeIcon i{
     cursor: pointer;
-}
-
-.dashboardOrdersTable{
-    border-collapse: collapse;
 }

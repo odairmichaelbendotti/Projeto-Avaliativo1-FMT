@@ -1,0 +1,77 @@
+.loginAreaContainer{
+    display: flex;
+    width: 100%;
+    height: 80vh;
+}
+
+.movArea{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    border-radius: 30px;
+}
+
+.bgArea{
+    width: 50%;
+    height: 100%;
+    background-color: #4FD1C5;
+    border-radius: 50px;
+}
+
+.bgAreaImg{
+    background-image: url(../../../public/bg-login.png);
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    border-radius: 50px;
+}
+
+.chooseLoginCadastro{
+    display: flex;
+    justify-content: center;
+    width: 40%;
+    height: 30px;
+    font-size: 13px;
+    background-color: #FFF;
+    border-radius: 15px;
+    
+}
+
+.chooseLoginBox:hover{
+    background-color: #4FD1C5;
+}
+
+.chooseLoginBox{
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    cursor: pointer;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.chooseCadastroBox{
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;   
+    cursor: pointer;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.chooseCadastroBox:hover{
+    background-color: #4FD1C5;
+}
+
+.active{
+    background-color: #4FD1C5;;
+}

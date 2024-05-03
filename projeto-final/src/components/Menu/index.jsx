@@ -39,7 +39,7 @@ export const Menu = () => {
                 <ul>
                     <li className={style.sideMenuItems}>
                         <i className={style.sideMenuIcon}><FaRegUserCircle /></i>
-                        <p className={style.sideMenuP}>Login</p>
+                        <Link to='login'><p className={style.sideMenuP}>Login</p></Link>
                     </li>
                     <li className={style.sideMenuItems}>
                         <i className={style.sideMenuIcon}><CiLogout /></i>

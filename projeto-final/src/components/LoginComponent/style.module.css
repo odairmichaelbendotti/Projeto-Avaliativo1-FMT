@@ -1,0 +1,45 @@
+.loginComponentLabelInputArea{
+    display: flex;
+    flex-direction: column;
+}
+
+.loginComponentLabelInputArea input{
+    height: 30px;
+    padding-left: 10px;
+    color: grey;
+    border: none;
+    border-radius: 10px;
+}
+
+.loginArea{
+    width: 350px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.loginComponentLabel{
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.loginAreaButtonLogin{
+    font: 30px;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: #4FD1C5;
+    border-radius: 10px;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.loginAreaButtonLogin:hover{
+    background-color: #4FD1C5;
+}
+
+.loginAreaH3{
+    color: #4FD1C5;
+}
