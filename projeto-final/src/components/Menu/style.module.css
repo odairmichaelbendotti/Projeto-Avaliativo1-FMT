@@ -1,0 +1,140 @@
+.sideMenu {
+    width: 250px;
+    height: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    background-color: rgb(245, 245, 245);
+}
+
+.logo {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.logo img {
+    width: 75px;
+}
+
+.sideMenuNav {
+    width: 100%;
+    height: calc(100% - 80px);
+    padding: 5px 10px;
+    margin-top: 30px;
+}
+
+.sideMenuItems {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    padding: 15px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+a{
+    text-decoration: none;
+    color: #2D3748;
+}
+
+.sideMenuItems:hover {
+    background-color: #FFFFFF;
+    color: #2D3748;
+    font-weight: bold;
+}
+
+.sideMenuIcon {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    color: #4FD1C5;
+}
+
+.sideMenuItems:hover .sideMenuIcon {
+    background-color: #4FD1C5;
+    color: #FFFFFF;
+}
+
+.sideMenuP {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.linha {
+    padding: 0px 30px;
+}
+
+.hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #4FD1C5, transparent);
+    /* Degradê horizontal */
+}
+
+.titles {
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 30px;
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+
+.cardUserContainer {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.cardUser {
+    width: 200px;
+    height: 150px;
+    background-color: #4FD1C5;
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -webkit-box-shadow: 0px 0px 9px 0px rgba(196,196,196,1);
+    -moz-box-shadow: 0px 0px 9px 0px rgba(196,196,196,1);
+    box-shadow: 0px 0px 9px 0px rgba(196,196,196,1);
+}
+
+.cardUserIcon {
+    font-size: 15px;
+    padding: 7px 10px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    color: #4FD1C5;
+}
+
+.cardUserLogado{
+    text-align: center;
+    padding: 15px;
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.cardUserLogado p{
+    margin-top: 7px;
+}
+
+.cardUserBtnClass{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 15px;
+    width: 100%;
+    border: 1px solid #FFF;
+    height: 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 15px;
+}

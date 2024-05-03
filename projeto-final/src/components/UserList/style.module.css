@@ -1,0 +1,104 @@
+.userListContainer{
+    width: 100%;
+    height: 80vh;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+}
+
+.tableContainer{
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+}
+
+.userTableSpace{
+    width: 100%;
+    display: table;
+    border-collapse: collapse;
+}
+
+.userTableHeader{
+    color: #2D3748;
+    text-transform: uppercase;
+    font-size: 9px;
+    border-bottom: 1px solid #a0aec029;
+}
+
+.userTableTh{
+    padding: 5px;
+    padding-bottom: 10px;
+    color: #A0AEC0;
+}
+
+.userTableThName{
+    text-align: left;
+}
+
+.userTableTd{
+    color: black;
+    font-size: 9px;
+    padding: 10px;
+    text-align: center;
+
+}
+
+.userTableTdName{
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.userTableTdProfileImg img{
+    width: 30px;
+    height: 30px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10%;
+}
+
+.userTableTrBody{
+    border-bottom: 1px solid #a0aec029;
+}
+
+.userTableTdMaterial, .userTableTdStatus{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.userTableTdStatus{
+    cursor: pointer;
+}
+
+.userTableTdStatusEdit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #4FD1C5;
+    font-weight: bold;
+    color: #FFF;
+    border: 1px solid rgba(128, 128, 128, 0);
+}
+
+.userTableTdStatusDelete{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #4FD1C5;
+    font-weight: bold;
+    color: #FFF;
+    border: 1px solid rgba(128, 128, 128, 0);
+}
+
+.userTableTdStatusDelete:hover, .userTableTdStatusEdit:hover{
+    background-color: #a0aec029;
+    color: black;
+    border: 1px solid grey;
+}
