@@ -24,7 +24,7 @@
 
 .dashboardUserProfileIntern{
     width: 90%;
-    height: 70%;
+    height: 60%;
     background: rgb(255,255,255);
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(156,215,210,1) 100%); 
     border-radius: 40px;
@@ -134,6 +134,46 @@
     padding: 30px 40px;
 }
 
-.dashboardUserOrdersGroup{
-    
+.dashboardOrdersTable{
+    width: 100%;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: grey;
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+
+.dashboardOrdersBody{
+    text-align: center;
+    background-color: rgb(234, 234, 234);
+    color: rgb(62, 61, 61);
+}
+
+.dashboardOrdersData{
+    padding: 10px 0px;
+}
+
+.dashboardOrdersDataType{
+    gap: 10px;
+    font-size: 15px;
+    padding: 10px 0px;
+}
+
+.dashboardOrdersDataType i {
+    margin: 0 5px; /* Espaço de 5px de cada lado */
+}
+
+.dashboardOrdersDataStatus{
+    gap: 10px;
+    font-size: 15px;
+    padding: 10px 0px;
+}
+
+.dashboardOrdersDataStatus i {
+    margin: 0 5px; /* Espaço de 5px de cada lado */
+    cursor: pointer;
+}
+
+.dashboardOrdersTable{
+    border-collapse: collapse;
 }
