@@ -5,15 +5,25 @@ import { TbRecycleOff } from "react-icons/tb";
 import { CiSquareCheck } from "react-icons/ci";
 import { MdDeleteOutline } from "react-icons/md";
 import { BsGeoAlt } from "react-icons/bs";
+import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
 export const DashboardUser = ({ status }) => {
+    const navigate = useNavigate()
+    const usuario = JSON.parse(localStorage.getItem('usuario'));
+
+    if (!usuario) {
+        navigate('/login');
+        return <div>Redirecionando para login...</div>;
+      }
+
     return (
         <div className={style.dashboardUserContainer}>
             <div className={style.dashboardUserProfile}>
                 <div className={style.dashboardUserProfileIntern}>
                     <div className={style.dashboardUserProfileInternText}>
-                        <p className={style.dashboardUserProfileInternP}><span>Odair Michael Bendotti</span> ID #157</p>
-                        <p>odair.michael@hotmail.com</p>
+                        <p className={style.dashboardUserProfileInternP}><span>{usuario.nome}</span></p>
+                        <p>{usuario.email}</p>
                     </div>
                     <div className={style.dashboardUserProfileInternBox}>
 

@@ -43,3 +43,16 @@
 .loginAreaH3{
     color: #4FD1C5;
 }
+
+.mostrarSenha{
+    background-color: #FFF;
+    padding: 15px;
+    font-size: 12px;
+    border-radius: 25px;
+}
+
+.userInfos{
+    font-size: 10px;
+    color: rgb(255, 16, 16);
+    font-weight: bold;
+}
