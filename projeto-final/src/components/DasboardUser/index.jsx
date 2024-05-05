@@ -14,7 +14,7 @@ export const DashboardUser = ({ status }) => {
 
     if (!usuario) {
         navigate('/login');
-        return <div>Redirecionando para login...</div>;
+        return <div>Faça login</div>;
       }
 
     return (
@@ -29,12 +29,11 @@ export const DashboardUser = ({ status }) => {
 
                         <div className={style.dashboardUserProfileCoordinates}>
                             <div className={style.divCoordinatesIcon}>
-                            <BsGeoAlt />
-                            <p className={style.textCoordinatesIcon}><i></i><span>Coordenadas</span></p>
+                            <p className={style.textCoordinatesIcon}><i></i><span>{usuario.endereco.localidade}</span></p>
                             </div>
                             <div className={style.dashboardUserProfileCoordinatesText}>
-                                <p><span>SUL</span>:27°41'52.3"S</p>
-                                <p><span>OESTE</span>:48°44'55.7"W</p>
+                                <p>{usuario.endereco.logradouro}, </p>
+                                <p><span>nº </span>{usuario.endereco.numero}</p>
                             </div>
                         </div>
 

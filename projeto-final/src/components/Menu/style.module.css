@@ -34,6 +34,11 @@
     cursor: pointer;
 }
 
+.sideMenuItemsNewDiv{
+    display: flex;
+    gap: 10px;
+}
+
 a{
     text-decoration: none;
     color: #2D3748;
@@ -53,6 +58,7 @@ a{
     border-radius: 10px;
     color: #4FD1C5;
 }
+
 
 .sideMenuItems:hover .sideMenuIcon {
     background-color: #4FD1C5;
@@ -137,4 +143,12 @@ a{
     border-radius: 10px;
     font-weight: bold;
     font-size: 15px;
+}
+
+.logoutButton {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }

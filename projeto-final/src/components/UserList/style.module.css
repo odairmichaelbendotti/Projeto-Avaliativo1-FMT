@@ -49,9 +49,8 @@
     gap: 10px;
 }
 
-.userTableTdProfileImg img{
-    width: 30px;
-    height: 30px;
+.userTableTdProfileImg i{
+    font-size: 20px;
     background-position: center;
     background-size: cover;
     border-radius: 10%;
