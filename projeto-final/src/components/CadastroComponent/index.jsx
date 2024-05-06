@@ -134,6 +134,16 @@ export const CadastroComponent = () => {
               <option value="feminino">Feminino</option>
             </select>
           </div>
+
+          <div className={style.loginComponentLabelInputArea}>
+            <label htmlFor="residuo">Tipo de Resíduo</label>
+            <select id='sexo' value={residuo} onChange={(e) => setResiduo(e.target.value)} onBlur={console.log(residuo)}required>
+              <option value="">Selecione...</option>
+              <option value="Reciclável">Reciclável</option>
+              <option value="Não reciclável">Não reciclável</option>
+              <option value="Ambos">Ambos</option>
+            </select>
+          </div>
           <button className={style.loginAreaButtonLogin} onClick={cadastrar}>Cadastrar</button>
         </div>
       </div>
