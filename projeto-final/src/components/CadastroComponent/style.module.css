@@ -1,3 +1,9 @@
+.loginContainer {
+    overflow-x: hidden;  /* Habilita o scroll lateral quando o conteúdo transborda */
+    overflow-y: hidden; /* Esconde o scroll vertical */
+  }
+  
+
 .loginComponentLabelInputArea{
     display: flex;
     flex-direction: column;
@@ -63,3 +69,40 @@
     display: flex;
     flex-direction: column;
 }
+
+.endereco{
+    border-top: 1px solid rgb(185, 184, 184);
+    padding: 2px;
+}
+
+/* Adicione ao seu arquivo style.module.css */
+.sectionHidden {
+    display: none;  /* Oculta a seção que não está ativa */
+  }
+  
+  .sectionVisible {
+    display: flex;  /* Mostra a seção ativa */
+    flex-direction: column;
+    animation: slideIn 0.5s ease-in-out;
+    gap: 20px;
+  }
+  
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  
+  .carouselControls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+.emailErro{
+    margin-top: 5px;
+    padding: 5px;
+    font-size: 10px;
+    color: white;
+    background-color: red;
+    border-radius: 10px;
+  }
