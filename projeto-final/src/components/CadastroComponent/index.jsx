@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import style from './style.module.css';
+import pessoas from '../../data/Usuarios';
 
 export const CadastroComponent = () => {
   const [activeSection, setActiveSection] = useState(1);
-  const [pessoas, setPessoas] = useState([]);
+  const [pessoasState, setPessoas] = useState(pessoas);
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [erroNoEmail, setErroNoEmail] = useState(false);
@@ -23,7 +24,7 @@ export const CadastroComponent = () => {
   }, []);
 
   function verificarEmail() {
-    const emailExiste = pessoas.some(pessoa => pessoa.email.toLowerCase() === email.toLowerCase());
+    const emailExiste = pessoasState.some(pessoa => pessoa.email.toLowerCase() === email.toLowerCase());
     setErroNoEmail(emailExiste);
   }
 
@@ -64,12 +65,27 @@ export const CadastroComponent = () => {
   }
 
   function cadastrar() {
-    const novoUsuario = { nome, email, senha, cep, cidade, bairro, estado, cpf, sexo, residuo };
-    const atualizadoPessoas = [...pessoas, novoUsuario];
-    setPessoas(atualizadoPessoas);
-    localStorage.setItem('pessoas', JSON.stringify(atualizadoPessoas));
+    const novoUsuario = {
+      nome,
+      email,
+      senha,
+      cep,
+      cidade,
+      bairro,
+      estado,
+      cpf,
+      sexo,
+      residuo
+    };
+  
+    const atualizadoPessoas = [...pessoasState, novoUsuario]; // Cria um novo array com o novo usuário adicionado
+    setPessoas(atualizadoPessoas); // Atualiza o estado de pessoas no React
+  
+    localStorage.setItem('pessoas', JSON.stringify(atualizadoPessoas)); // Atualiza o localStorage
+  
     alert('Cadastro realizado com sucesso!');
     setActiveSection(1); // Resetar a seção após cadastro
+    console.log(atualizadoPessoas)
   }
 
   return (
@@ -137,7 +153,7 @@ export const CadastroComponent = () => {
 
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="residuo">Tipo de Resíduo</label>
-            <select id='sexo' value={residuo} onChange={(e) => setResiduo(e.target.value)} onBlur={console.log(residuo)}required>
+            <select id='residuo' value={residuo} onChange={(e) => setResiduo(e.target.value)} required>
               <option value="">Selecione...</option>
               <option value="Reciclável">Reciclável</option>
               <option value="Não reciclável">Não reciclável</option>

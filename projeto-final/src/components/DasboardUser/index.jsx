@@ -7,15 +7,43 @@ import { MdDeleteOutline } from "react-icons/md";
 import { BsGeoAlt } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
+import { useState } from 'react'
 
 export const DashboardUser = ({ status }) => {
+
+    const [coletar, setColetar] = useState([])
+    const [diaSolicitacao, setDiaSolicitacao] = useState()
+    const [mesColeta, setMesColeta] = useState()
+    const [horarioColeta, setHorarioColeta] = useState()
+
+    function dataInfos() {
+        const dataAtual = new Date()
+        setDiaSolicitacao(dataAtual.getDate())
+        setMesColeta(dataAtual.toLocaleString('pt-BR', { month: 'long' }))
+        setHorarioColeta(dataAtual.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }))  
+        setColetar([...coletar, { 
+            data: {diaSolicitacao}, 
+            mes: {mesColeta}, 
+            horario: {horarioColeta} 
+        }]) 
+    }
+
+    
+    function deletar(index){
+        console.log(`Deletando o item ${index}`)
+        const deletarColetas = coletar.filter((item, ordem) => ordem !== index)
+        setColetar(deletarColetas)
+    }
+
     const navigate = useNavigate()
     const usuario = JSON.parse(localStorage.getItem('usuario'));
 
     if (!usuario) {
         navigate('/login');
         return <div>Faça login</div>;
-      }
+    }
+
+
 
     return (
         <div className={style.dashboardUserContainer}>
@@ -29,7 +57,7 @@ export const DashboardUser = ({ status }) => {
 
                         <div className={style.dashboardUserProfileCoordinates}>
                             <div className={style.divCoordinatesIcon}>
-                            <p className={style.textCoordinatesIcon}><i></i><span>{usuario.endereco.localidade}</span></p>
+                                <p className={style.textCoordinatesIcon}><i></i><span>{usuario.endereco.localidade}</span></p>
                             </div>
                             <div className={style.dashboardUserProfileCoordinatesText}>
                                 <p>{usuario.endereco.logradouro}, </p>
@@ -40,7 +68,7 @@ export const DashboardUser = ({ status }) => {
                         <div className={status !== 'Ativo' ? style.dashboardUserProfileInternStatusInactive : style.dashboardUserProfileInternStatusActive}>
                             <p>{status}</p>
                         </div>
-                        <div className={`${style.dashboardUserProfileInternBtnOne}`}>
+                        <div className={`${style.dashboardUserProfileInternBtnOne}`} onClick={dataInfos}>
                             <i><CiAlignRight /></i>
                             <p>Solicitar coleta</p>
                         </div>
@@ -62,19 +90,21 @@ export const DashboardUser = ({ status }) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr  className={style.dashboardUserTableBody}>
-                                    <td className={style.dashboardUserInterData}>03/05/2024</td>
-                                    <td className={style.dashboardUserInterData}>Maio</td>
-                                    <td className={style.dashboardUserInterData}>09:22</td>
-                                    <td className={`${style.dashboardUserInterData} ${style.dashboardUserInterDataChange}`}>
-                                        <i><FaRecycle /></i>
-                                        <i><TbRecycleOff /></i>
-                                    </td>
-                                    <td className={`${style.dashboardUserInterData} ${style.dashboardUserInterDataChange} ${style.dashboardUserInterDataChangeIcon}`}>
-                                        <i><CiSquareCheck /></i>
-                                        <i><MdDeleteOutline /></i>
-                                    </td>
-                                </tr>
+                                {coletar.map((item, index) => (
+                                    <tr className={style.dashboardUserTableBody} key={index}>
+                                        <td className={style.dashboardUserInterData}>{diaSolicitacao}</td>
+                                        <td className={style.dashboardUserInterData}>{mesColeta}</td>
+                                        <td className={style.dashboardUserInterData}>{horarioColeta}</td>
+                                        <td className={`${style.dashboardUserInterData} ${style.dashboardUserInterDataChange}`}>
+                                            <i><FaRecycle /></i>
+                                            <i><TbRecycleOff /></i>
+                                        </td>
+                                        <td className={`${style.dashboardUserInterData} ${style.dashboardUserInterDataChange} ${style.dashboardUserInterDataChangeIcon}`}>
+                                            <i><CiSquareCheck /></i>
+                                            <i><MdDeleteOutline onClick={() => deletar(index)}/></i>
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>

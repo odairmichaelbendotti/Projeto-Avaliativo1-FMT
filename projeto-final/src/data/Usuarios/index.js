@@ -161,3 +161,5 @@ export let pessoas = [
         tipoUsuario: "admin"
     }
 ];
+
+export default pessoas;

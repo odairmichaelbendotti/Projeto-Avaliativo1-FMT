@@ -4,10 +4,11 @@ import { FaRecycle } from "react-icons/fa";
 import { TbRecycleOff } from "react-icons/tb";
 import { CiEdit } from "react-icons/ci";
 import { MdDeleteOutline } from "react-icons/md";
-import { pessoas } from '../../data/Usuarios';  // Caminho ajustado conforme necessário
+import pessoas from '../../data/Usuarios';  // Caminho ajustado conforme necessário
 import { CiUser } from "react-icons/ci";
 
 export const UserList = () => {
+  
   return (
     <section>
       <div className={style.userListContainer}>
