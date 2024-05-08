@@ -8,6 +8,8 @@ import { BsGeoAlt } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { useState } from 'react'
+import { CiViewList } from "react-icons/ci";
+import { BsFillPinMapFill } from "react-icons/bs";
 
 export const DashboardUser = () => {
 
@@ -25,7 +27,7 @@ export const DashboardUser = () => {
         setColetar([...coletar, {
             solicitacao: novaDiaSolicitacao,
             dia: diaColeta,
-            tipoResiduo: tipoResiduo 
+            tipoResiduo: tipoResiduo
         }]);
     }
 
@@ -36,17 +38,17 @@ export const DashboardUser = () => {
     }
 
 
-    function tipoLixo(tipoResiduo){
-        if (tipoResiduo === 'Reciclável'){
+    function tipoLixo(tipoResiduo) {
+        if (tipoResiduo === 'Reciclável') {
             return <i><FaRecycle /></i>
-        } else if (tipoResiduo === 'Não reciclável'){
-           return <i><TbRecycleOff /></i>
+        } else if (tipoResiduo === 'Não reciclável') {
+            return <i><TbRecycleOff /></i>
         } else {
             return (
-            <>
-                <i><FaRecycle /></i>
-                <i><TbRecycleOff /></i>
-            </>
+                <>
+                    <i><FaRecycle /></i>
+                    <i><TbRecycleOff /></i>
+                </>
             )
         }
     }
@@ -59,6 +61,15 @@ export const DashboardUser = () => {
         return <div>Faça login</div>;
     }
 
+
+    function limiteAtingido() {
+
+        return (
+            <div className={style.limiteAtingido}>
+                <p>Aprove alguma coleta solicitada para continuar solicitando.</p>
+            </div>
+        )
+    }
 
 
     return (
@@ -106,17 +117,26 @@ export const DashboardUser = () => {
                                 </select>
                             </div>
                         </div>
-
-                        <div className={`${style.dashboardUserProfileInternBtnOne}`} onClick={dataInfos}>
-                            <i><CiAlignRight /></i>
-                            <p>Solicitar coleta</p>
-                        </div>
+                        {coletar.length < 6 ?
+                            <div className={`${style.dashboardUserProfileInternBtnOne}`} onClick={dataInfos}>
+                                <i><CiAlignRight /></i>
+                                <p>Solicitar coleta</p>
+                            </div>
+                            :
+                            <div className={`${style.dashboardUserProfileInternBtnOne}`}>
+                                <i><CiAlignRight /></i>
+                                <p>Solicitar coleta</p>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
             <div className={style.dashboardUserDetailsContainer}>
                 <div className={style.dashboardUserOrders}>
-                    <p className={style.dashboardUserOrdersTitle}>Coletas solicitadas</p>
+                    <div className={style.dashboardUserOrdersTitleTwo}>
+                        <CiViewList />
+                        <p>Coletas solicitadas</p>
+                    </div>
                     <div className={style.dashboardUserOrdersGroup}>
                         <table className={style.dashboardUserTable}>
                             <thead className={style.dashboardUserTableHeader}>
@@ -143,10 +163,21 @@ export const DashboardUser = () => {
                                 ))}
                             </tbody>
                         </table>
+                        <div>
+                            {coletar.length == 6 &&
+                                limiteAtingido()
+                            }
+                        </div>
                     </div>
                 </div>
-                <div className={style.dashboardUserMap}>
-
+                <div className={style.dashboardUserOrders}>
+                    <div className={style.dashboardUserOrdersTitleTwo}>
+                        <BsFillPinMapFill />
+                        <p>Local de coleta</p>
+                    </div>
+                    <div className={style.dashboardUserOrdersGroup}>
+                        {/* Mapa aqui */}
+                    </div>
                 </div>
             </div>
         </div>

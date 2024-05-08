@@ -10,6 +10,11 @@ import { FaUserCheck } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa6";
 import { ContainerLogo } from '../ContainerLogo/index';
 import { Link } from 'react-router-dom';
+import { FaLocationDot } from "react-icons/fa6";
+import { MdOutlineLocationCity } from "react-icons/md";
+import { MdOutlineMailOutline } from "react-icons/md";
+import { CiViewList } from "react-icons/ci";
+
 
 export const Menu = () => {
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -77,10 +82,28 @@ export const Menu = () => {
                         </li></Link>
                     )}
                     {isUserLoggedIn && (
-                        <li className={style.sideMenuItems} onClick={logout}>
-                            <i className={style.sideMenuIcon}><CiLogout /></i>
-                            <p className={style.sideMenuP}>Sair</p>
-                        </li>
+                        <div className={style.userGeralInfosTotal}>
+                            <li className={style.sideMenuItems} onClick={logout}>
+                                <i className={style.sideMenuIcon}><CiLogout /></i>
+                                <p className={style.sideMenuP}>Sair</p>
+                            </li>
+                            <div className={style.divUserInfos}>
+                                <div className={style.itensCardUserMenu}>
+                                    <p className={style.divUserInfosName}>{currentUser.nome}</p>
+                                </div>
+
+                                <div className={style.divUserInfosUsuResto}>
+                                    <div className={style.itensCardUserMenu}>
+                                        <FaLocationDot />
+                                        <p className={style.divUserInfosResto}>{currentUser.endereco.logradouro}, nº {currentUser.endereco.numero}</p>
+                                    </div>
+                                    <div className={style.itensCardUserMenu}>
+                                        <MdOutlineLocationCity />
+                                        <p className={style.divUserInfosResto}>{currentUser.endereco.localidade} - {currentUser.endereco.uf}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     )}
                 </ul>
             </nav>
