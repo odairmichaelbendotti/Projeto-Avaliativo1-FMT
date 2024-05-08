@@ -9,30 +9,46 @@ import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { useState } from 'react'
 
-export const DashboardUser = ({ status }) => {
+export const DashboardUser = () => {
 
     const [coletar, setColetar] = useState([])
     const [diaSolicitacao, setDiaSolicitacao] = useState()
     const [mesColeta, setMesColeta] = useState()
-    const [horarioColeta, setHorarioColeta] = useState()
+    const [diaColeta, setDiaColeta] = useState('Terça-feira')
+    const [tipoResiduo, setTipoResiduo] = useState('Ambos')
 
     function dataInfos() {
-        const dataAtual = new Date()
-        setDiaSolicitacao(dataAtual.getDate())
-        setMesColeta(dataAtual.toLocaleString('pt-BR', { month: 'long' }))
-        setHorarioColeta(dataAtual.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }))  
-        setColetar([...coletar, { 
-            data: {diaSolicitacao}, 
-            mes: {mesColeta}, 
-            horario: {horarioColeta} 
-        }]) 
+        const dataAtual = new Date();
+        const novaDiaSolicitacao = `${dataAtual.getDate()} de ${dataAtual.toLocaleString('pt-BR', { month: 'long' })}`;
+        setDiaSolicitacao(novaDiaSolicitacao);
+
+        setColetar([...coletar, {
+            solicitacao: novaDiaSolicitacao,
+            dia: diaColeta,
+            tipoResiduo: tipoResiduo 
+        }]);
     }
 
-    
-    function deletar(index){
+    function deletar(index) {
         console.log(`Deletando o item ${index}`)
         const deletarColetas = coletar.filter((item, ordem) => ordem !== index)
         setColetar(deletarColetas)
+    }
+
+
+    function tipoLixo(tipoResiduo){
+        if (tipoResiduo === 'Reciclável'){
+            return <i><FaRecycle /></i>
+        } else if (tipoResiduo === 'Não reciclável'){
+           return <i><TbRecycleOff /></i>
+        } else {
+            return (
+            <>
+                <i><FaRecycle /></i>
+                <i><TbRecycleOff /></i>
+            </>
+            )
+        }
     }
 
     const navigate = useNavigate()
@@ -55,7 +71,7 @@ export const DashboardUser = ({ status }) => {
                     </div>
                     <div className={style.dashboardUserProfileInternBox}>
 
-                        <div className={style.dashboardUserProfileCoordinates}>
+                        {/* <div className={style.dashboardUserProfileCoordinates}>
                             <div className={style.divCoordinatesIcon}>
                                 <p className={style.textCoordinatesIcon}><i></i><span>{usuario.endereco.localidade}</span></p>
                             </div>
@@ -63,11 +79,34 @@ export const DashboardUser = ({ status }) => {
                                 <p>{usuario.endereco.logradouro}, </p>
                                 <p><span>nº </span>{usuario.endereco.numero}</p>
                             </div>
+                        </div> */}
+
+                        {/* <div className={status !== 'Ativo' ? style.dashboardUserProfileInternStatusInactive : style.dashboardUserProfileInternStatusActive}>
+                            <p>{status}</p>
+                        </div> */}
+
+                        <div className={style.dashboardUserProfileCoordinates}>
+                            <div className={style.dashboardUserProfileTipoLixo}>
+                                <label htmlFor="diaColeta">Dia de coleta</label>
+                                <select id="diaColeta" value={diaColeta} onChange={(e) => setDiaColeta(e.target.value)} onClick={() => console.log(diaColeta)}>
+                                    <option value="Terça-feira">Terças-feiras</option>
+                                    <option value="Quinta-feira">Quintas-feira</option>
+                                    <option value="Domingo">Domingos</option>
+                                </select>
+                            </div>
                         </div>
 
-                        <div className={status !== 'Ativo' ? style.dashboardUserProfileInternStatusInactive : style.dashboardUserProfileInternStatusActive}>
-                            <p>{status}</p>
+                        <div className={style.dashboardUserProfileCoordinates}>
+                            <div className={style.dashboardUserProfileTipoLixo}>
+                                <label htmlFor="residuo">Tipo de resíduo</label>
+                                <select id="residuo" value={tipoResiduo} onChange={(e) => setTipoResiduo(e.target.value)} onClick={() => console.log(tipoResiduo)}>
+                                    <option value="Reciclável">Reciclável</option>
+                                    <option value="Não reciclável">Não reciclável</option>
+                                    <option value="Ambos">Ambos</option>
+                                </select>
+                            </div>
                         </div>
+
                         <div className={`${style.dashboardUserProfileInternBtnOne}`} onClick={dataInfos}>
                             <i><CiAlignRight /></i>
                             <p>Solicitar coleta</p>
@@ -82,9 +121,8 @@ export const DashboardUser = ({ status }) => {
                         <table className={style.dashboardUserTable}>
                             <thead className={style.dashboardUserTableHeader}>
                                 <tr>
-                                    <th className={style.dashboardUserInterHeader}>Data</th>
-                                    <th className={style.dashboardUserInterHeader}>Mês</th>
-                                    <th className={style.dashboardUserInterHeader}>Horário</th>
+                                    <th className={style.dashboardUserInterHeader}>Solicitação</th>
+                                    <th className={style.dashboardUserInterHeader}>Dia coleta</th>
                                     <th className={style.dashboardUserInterHeader}>Tipo de lixo</th>
                                     <th className={style.dashboardUserInterHeader}>Status</th>
                                 </tr>
@@ -92,16 +130,14 @@ export const DashboardUser = ({ status }) => {
                             <tbody>
                                 {coletar.map((item, index) => (
                                     <tr className={style.dashboardUserTableBody} key={index}>
-                                        <td className={style.dashboardUserInterData}>{diaSolicitacao}</td>
-                                        <td className={style.dashboardUserInterData}>{mesColeta}</td>
-                                        <td className={style.dashboardUserInterData}>{horarioColeta}</td>
+                                        <td className={style.dashboardUserInterData}>{item.solicitacao}</td>
+                                        <td className={style.dashboardUserInterData}>{item.dia}</td>
                                         <td className={`${style.dashboardUserInterData} ${style.dashboardUserInterDataChange}`}>
-                                            <i><FaRecycle /></i>
-                                            <i><TbRecycleOff /></i>
+                                            {tipoLixo(item.tipoResiduo)}
                                         </td>
                                         <td className={`${style.dashboardUserInterData} ${style.dashboardUserInterDataChange} ${style.dashboardUserInterDataChangeIcon}`}>
                                             <i><CiSquareCheck /></i>
-                                            <i><MdDeleteOutline onClick={() => deletar(index)}/></i>
+                                            <i><MdDeleteOutline onClick={() => deletar(index)} /></i>
                                         </td>
                                     </tr>
                                 ))}

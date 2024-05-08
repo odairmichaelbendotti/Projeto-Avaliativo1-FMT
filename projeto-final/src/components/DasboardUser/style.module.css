@@ -55,6 +55,23 @@
     align-items: center;
 }
 
+.dashboardUserProfileTipoLixo{
+    font-size: 10px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.dashboardUserProfileTipoLixo label{
+    margin-left: 5px;
+}
+
+.dashboardUserProfileTipoLixo select{
+    font-size: 8px;
+    width: 100px;
+}
+
 .dashboardUserProfileCoordinates{
     display: flex;
     justify-content: center;
