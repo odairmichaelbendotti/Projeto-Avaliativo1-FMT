@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';  // Importa useState e useEffect de 'react'
-import { useNavigate } from 'react-router-dom';  // Importa useNavigate de 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import style from './style.module.css';
 import { LuLayoutDashboard } from "react-icons/lu";
 import { GoGraph } from "react-icons/go";
@@ -9,12 +9,10 @@ import { CiLogout } from "react-icons/ci";
 import { FaUserCheck } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa6";
 import { ContainerLogo } from '../ContainerLogo/index';
-import { Link } from 'react-router-dom';
 import { FaLocationDot } from "react-icons/fa6";
 import { MdOutlineLocationCity } from "react-icons/md";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { CiViewList } from "react-icons/ci";
-
 
 export const Menu = () => {
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -22,10 +20,10 @@ export const Menu = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const checkLogin = () => {
-            const usuarioLogado = localStorage.getItem('usuario');
-            if (usuarioLogado) {
-                const parsedUser = JSON.parse(usuarioLogado);
+        const checkLoginStatus = () => {
+            const user = localStorage.getItem('usuario');
+            if (user) {
+                const parsedUser = JSON.parse(user);
                 setIsUserLoggedIn(true);
                 setCurrentUser(parsedUser);
             } else {
@@ -34,12 +32,13 @@ export const Menu = () => {
             }
         };
 
-        checkLogin();  // Verifica o login na montagem do componente
+        checkLoginStatus();
 
-        window.addEventListener('loginSuccess', checkLogin);  // Adiciona ouvinte para o evento de login bem-sucedido
+        const handleLoginSuccess = () => checkLoginStatus();
+        window.addEventListener('loginSuccess', handleLoginSuccess);
 
         return () => {
-            window.removeEventListener('loginSuccess', checkLogin);  // Limpeza: remove o ouvinte ao desmontar o componente
+            window.removeEventListener('loginSuccess', handleLoginSuccess);
         };
     }, []);
 
@@ -47,7 +46,7 @@ export const Menu = () => {
         localStorage.removeItem('usuario');
         setIsUserLoggedIn(false);
         setCurrentUser(null);
-        navigate('/login');  // Navega para a página de login após logout
+        navigate('/login');
     };
 
     return (
@@ -63,47 +62,48 @@ export const Menu = () => {
             <nav className={style.sideMenuNav}>
                 <ul>
                     <Link to='dashboard'><li className={style.sideMenuItems}>
-                        <i className={style.sideMenuIcon}><LuLayoutDashboard /></i>
-                        <p className={style.sideMenuP}>Dashboard</p>
+                        <i><LuLayoutDashboard /></i>
+                        <p>Dashboard</p>
                     </li></Link>
                     {currentUser && currentUser.tipoUsuario === "admin" && (
                         <Link to='beneficiarios'><li className={style.sideMenuItems}>
-                            <i className={style.sideMenuIcon}><FaHouseUser /></i>
-                            <p className={style.sideMenuP}>Beneficiários</p>
+                            <i><FaHouseUser /></i>
+                            <p>Beneficiários</p>
                         </li></Link>
                     )}
                 </ul>
                 <h2 className={style.titles}>Minha conta</h2>
                 <ul>
                     {!isUserLoggedIn && (
-                        <Link to='login'><li className={style.sideMenuItems}>
-                            <i className={style.sideMenuIcon}><FaRegUserCircle /></i>
-                            <p className={style.sideMenuP}>Login</p>
+                        <Link to='/login'><li className={style.sideMenuItems}>
+                            <i><FaRegUserCircle /></i>
+                            <p>Login</p>
                         </li></Link>
                     )}
-                    {isUserLoggedIn && (
-                        <div className={style.userGeralInfosTotal}>
+                    {isUserLoggedIn && currentUser && (
+                        <>
                             <li className={style.sideMenuItems} onClick={logout}>
-                                <i className={style.sideMenuIcon}><CiLogout /></i>
-                                <p className={style.sideMenuP}>Sair</p>
+                                <i><CiLogout /></i>
+                                <p>Sair</p>
                             </li>
-                            <div className={style.divUserInfos}>
-                                <div className={style.itensCardUserMenu}>
-                                    <p className={style.divUserInfosName}>{currentUser.nome}</p>
-                                </div>
-
-                                <div className={style.divUserInfosUsuResto}>
+                            {isUserLoggedIn && currentUser && currentUser.endereco && (
+                                <div className={style.divUserInfos}>
                                     <div className={style.itensCardUserMenu}>
-                                        <FaLocationDot />
-                                        <p className={style.divUserInfosResto}>{currentUser.endereco.logradouro}, nº {currentUser.endereco.numero}</p>
+                                        <p className={style.divUserInfosName}>{currentUser.nome}</p>
                                     </div>
-                                    <div className={style.itensCardUserMenu}>
-                                        <MdOutlineLocationCity />
-                                        <p className={style.divUserInfosResto}>{currentUser.endereco.localidade} - {currentUser.endereco.uf}</p>
+                                    <div className={style.divUserInfosUsuResto}>
+                                        <div className={style.itensCardUserMenu}>
+                                            <FaLocationDot />
+                                            <p className={style.divUserInfosResto}>{currentUser.endereco.logradouro}, nº {currentUser.endereco.numero}</p>
+                                        </div>
+                                        <div className={style.itensCardUserMenu}>
+                                            <MdOutlineLocationCity />
+                                            <p className={style.divUserInfosResto}>{currentUser.endereco.cidade} - {currentUser.endereco.uf}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            )}
+                        </>
                     )}
                 </ul>
             </nav>

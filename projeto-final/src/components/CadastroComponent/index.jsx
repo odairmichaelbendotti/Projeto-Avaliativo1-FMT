@@ -4,7 +4,7 @@ import pessoas from '../../data/Usuarios';
 
 export const CadastroComponent = () => {
   const [activeSection, setActiveSection] = useState(1);
-  const [pessoasState, setPessoas] = useState(pessoas);
+  const [pessoasState, setPessoas] = useState([]);
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [erroNoEmail, setErroNoEmail] = useState(false);
@@ -17,6 +17,9 @@ export const CadastroComponent = () => {
   const [bairro, setBairro] = useState('');
   const [estado, setEstado] = useState('');
   const [residuo, setResiduo] = useState('');
+  const [logradouro, setLogradouro] = useState('');
+  const [numero, setNumero] = useState('');
+  const [dataNascimento, setDataNascimento] = useState('');
 
   useEffect(() => {
     const loadedPessoas = JSON.parse(localStorage.getItem('pessoas')) || [];
@@ -26,6 +29,18 @@ export const CadastroComponent = () => {
   function verificarEmail() {
     const emailExiste = pessoasState.some(pessoa => pessoa.email.toLowerCase() === email.toLowerCase());
     setErroNoEmail(emailExiste);
+  }
+
+  function cadastrar() {
+    const novoUsuario = {
+      nome, email, senha, cep, cidade, bairro, estado, cpf, sexo, residuo, dataNascimento
+    };
+
+    const atualizadoPessoas = [...pessoasState, novoUsuario];
+    setPessoas(atualizadoPessoas);
+    localStorage.setItem('pessoas', JSON.stringify(atualizadoPessoas));
+    alert('Cadastro realizado com sucesso!');
+    setActiveSection(1); 
   }
 
   function podeAvancar() {
@@ -55,6 +70,7 @@ export const CadastroComponent = () => {
             setCidade(data.localidade);
             setBairro(data.bairro);
             setEstado(data.uf);
+            setLogradouro(data.logradouro);
           } else {
             alert('CEP não encontrado!');
           }
@@ -69,24 +85,27 @@ export const CadastroComponent = () => {
       nome,
       email,
       senha,
-      cep,
-      cidade,
-      bairro,
-      estado,
-      cpf,
       sexo,
-      residuo
+      residuo,
+      cpf,
+      dataNascimento,
+      endereco: {
+        cep,
+        cidade,
+        bairro,
+        estado,
+        logradouro,
+        numero
+      }
     };
   
-    const atualizadoPessoas = [...pessoasState, novoUsuario]; // Cria um novo array com o novo usuário adicionado
-    setPessoas(atualizadoPessoas); // Atualiza o estado de pessoas no React
-  
-    localStorage.setItem('pessoas', JSON.stringify(atualizadoPessoas)); // Atualiza o localStorage
+    const atualizadoPessoas = [...pessoasState, novoUsuario];
+    setPessoas(atualizadoPessoas);
+    localStorage.setItem('pessoas', JSON.stringify(atualizadoPessoas));
   
     alert('Cadastro realizado com sucesso!');
-    setActiveSection(1); // Resetar a seção após cadastro
-    console.log(atualizadoPessoas)
-  }
+    setActiveSection(1);
+}
 
   return (
     <section className={style.loginContainer}>
@@ -97,20 +116,20 @@ export const CadastroComponent = () => {
         <div className={activeSection === 1 ? style.sectionVisible : style.sectionHidden}>
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="name">Nome completo</label>
-            <input type="text" id='name' placeholder='Digite seu nome completo' value={nome} onChange={(e) => setNome(e.target.value)} required/>
+            <input type="text" id='name' placeholder='Digite seu nome completo' value={nome} onChange={(e) => setNome(e.target.value)} required />
           </div>
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="email">E-mail</label>
-            <input type="email" id='email' placeholder='Digite seu e-mail' value={email} onChange={(e) => setEmail(e.target.value)} onBlur={verificarEmail} required/>
+            <input type="email" id='email' placeholder='Digite seu e-mail' value={email} onChange={(e) => setEmail(e.target.value)} onBlur={verificarEmail} required />
             {erroNoEmail && <div className={style.emailErro}><p>E-mail já cadastrado.</p></div>}
           </div>
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="password">Senha</label>
-            <input type="password" id='password' placeholder='Digite sua senha' value={senha} onChange={(e) => setSenha(e.target.value)} required/>
+            <input type="password" id='password' placeholder='Digite sua senha' value={senha} onChange={(e) => setSenha(e.target.value)} required />
           </div>
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="confirmpassword">Confirme a senha</label>
-            <input type="password" id='confirmpassword' placeholder='Confirme sua senha' value={confirmaSenha} onChange={(e) => setConfirmaSenha(e.target.value)} required/>
+            <input type="password" id='confirmpassword' placeholder='Confirme sua senha' value={confirmaSenha} onChange={(e) => setConfirmaSenha(e.target.value)} required />
           </div>
           <button className={style.loginAreaButtonLogin} onClick={podeAvancar}>Próximo</button>
         </div>
@@ -119,20 +138,28 @@ export const CadastroComponent = () => {
         <div className={activeSection === 2 ? style.sectionVisible : style.sectionHidden}>
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="cep">CEP</label>
-            <input type="text" id='cep' placeholder='Digite seu CEP' value={cep} onChange={(e) => setCep(e.target.value)} onBlur={handleCepBlur} required/>
+            <input type="text" id='cep' placeholder='Digite seu CEP' value={cep} onChange={(e) => setCep(e.target.value)} onBlur={handleCepBlur} required />
           </div>
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="bairro">Bairro</label>
-            <input type="text" id='bairro' value={bairro} readOnly/>
+            <input type="text" id='bairro' value={bairro} readOnly />
           </div>
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="cidade">Cidade</label>
-            <input type="text" id='cidade' value={cidade} readOnly/>
+            <input type="text" id='cidade' value={cidade} readOnly />
           </div>
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="estado">Estado</label>
-            <input type="text" id='estado' value={estado} readOnly/>
+            <input type="text" id='estado' value={estado} readOnly />
           </div>
+          <div className={style.loginComponentLabelInputArea}>
+            <label htmlFor="logradouro">Logradouro</label>
+            <input type="text" id='logradouro' value={logradouro} readOnly />
+          </div>    
+          <div className={style.loginComponentLabelInputArea}>
+            <label htmlFor="numero">Número</label>
+            <input type="number" id='numero' value={numero} onChange={(e) => setNumero(e.target.value)} />
+          </div>       
           <button className={style.loginAreaButtonLogin} onClick={podeAvancar}>Próximo</button>
         </div>
 
@@ -140,16 +167,20 @@ export const CadastroComponent = () => {
         <div className={activeSection === 3 ? style.sectionVisible : style.sectionHidden}>
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="cpf">CPF</label>
-            <input type="text" id='cpf' value={cpf} onChange={(e) => setCpf(e.target.value)} required/>
+            <input type="text" id='cpf' value={cpf} onChange={(e) => setCpf(e.target.value)} required />
           </div>
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="sexo">Sexo</label>
             <select id='sexo' value={sexo} onChange={(e) => setSexo(e.target.value)} required>
               <option value="">Selecione...</option>
-              <option value="masculino">Masculino</option>
-              <option value="feminino">Feminino</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Feminino">Feminino</option>
             </select>
           </div>
+          <div className={style.loginComponentLabelInputArea}>
+            <label htmlFor="nascimento">Data de nascimento</label>
+            <input type="text" id='nascimento' value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} />
+          </div> 
 
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="residuo">Tipo de Resíduo</label>

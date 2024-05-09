@@ -85,11 +85,10 @@
 .dashboardUserProfileCoordinates{
     display: flex;
     justify-content: center;
-    flex-direction: column;
     align-items: center;
     padding: 5px 5px;
     border-radius: 10px;
-    gap: 5px;
+    gap: 25px;
 }
 
 .divCoordinatesIcon{
@@ -153,6 +152,34 @@
     font-size: 10px;
     padding: 5px;
     background-color:  #4FD1C5;
+    border-radius: 5px;
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.dashboardUserProfileInternBtnBlock{
+    padding: 1px 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    justify-content: space-between;
+    padding: 10px 15px;
+    font-weight: bold;
+    border-radius: 20px;
+    margin-left: 50px;
+}
+
+.dashboardUserProfileInternBtnBlock i{
+    font-size: 10px;
+    padding: 5px;
+    background-color:  #d1654f;
     border-radius: 5px;
     color: #FFF;
     display: flex;

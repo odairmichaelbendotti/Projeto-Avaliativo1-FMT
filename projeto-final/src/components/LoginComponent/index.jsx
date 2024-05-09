@@ -10,15 +10,21 @@ export const LoginComponent = () => {
   const [erroLogin, setErroLogin] = useState(false);
 
   function verificar() {
-    const encontrar = pessoas.find((pessoa) => pessoa.email === email && pessoa.senha === senha);
+    const pessoas = JSON.parse(localStorage.getItem('pessoas')) || [];
+    console.log("Verificando com pessoas carregadas:", pessoas); 
+
+    const encontrar = pessoas.find(pessoa => pessoa.email === email && pessoa.senha.toString() === senha);
     if (encontrar) {
-      navigate('/dashboard', { state: { usuario: encontrar } });
-      localStorage.setItem('usuario', JSON.stringify(encontrar));
-      window.dispatchEvent(new Event('loginSuccess'));  // Dispara um evento quando o login é bem-sucedido
+        console.log("Usuário encontrado:", encontrar);
+        navigate('/dashboard', { state: { usuario: encontrar } });
+        localStorage.setItem('usuario', JSON.stringify(encontrar));
+        window.dispatchEvent(new Event('loginSuccess'));
     } else {
-      setErroLogin(true);
+        console.log("Erro de login: Usuário não encontrado ou senha incorreta");
+        setErroLogin(true);
     }
-  }
+}
+
 
   return (
     <section className={style.loginContainer}>

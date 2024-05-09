@@ -1,14 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import style from './style.module.css';
 import { FaRecycle } from "react-icons/fa";
 import { TbRecycleOff } from "react-icons/tb";
 import { CiEdit } from "react-icons/ci";
 import { MdDeleteOutline } from "react-icons/md";
-import pessoas from '../../data/Usuarios';  // Caminho ajustado conforme necessário
+import pessoas from '../../data/Usuarios/index';
 import { CiUser } from "react-icons/ci";
 
 export const UserList = () => {
-  
+  const [pessoas, setPessoas] = useState([]);
+
+  useEffect(() => {
+    const loadedPessoas = JSON.parse(localStorage.getItem('pessoas')) || [];
+    setPessoas(loadedPessoas);
+  }, []);
+
+
+  function checkResiduoUser(pessoa) {
+    if (pessoa.residuo == "Ambos") {
+      return (<>
+        <FaRecycle />
+        <TbRecycleOff />
+      </>)
+    } else if (pessoa.residuo == "Reciclável"){
+      return <FaRecycle />
+    } else {
+      return <TbRecycleOff />
+    }
+  }
+
+
+  function deleteUser(pessoa, index){
+    const newPessoas = pessoas.filter((element, ordem) => {
+      return ordem !== index
+    })
+    setPessoas(newPessoas)
+    localStorage.setItem('pessoas', JSON.stringify(newPessoas))
+
+  }
+
   return (
     <section>
       <div className={style.userListContainer}>
@@ -43,14 +73,13 @@ export const UserList = () => {
                   <td className={style.userTableTd}>{pessoa.endereco.logradouro}</td>
                   <td className={style.userTableTd}>
                     <div className={style.userTableTdMaterial}>
-                      <FaRecycle />
-                      <TbRecycleOff />
+                      {checkResiduoUser(pessoa)}
                     </div>
                   </td>
                   <td className={style.userTableTd}>
                     <div className={style.userTableTdStatus}>
                       <div className={style.userTableTdStatusEdit}><CiEdit /></div>
-                      <div className={style.userTableTdStatusDelete}><MdDeleteOutline /></div>
+                      <div className={style.userTableTdStatusDelete} onClick={() => deleteUser(pessoa, index)}><MdDeleteOutline /></div>
                     </div>
                   </td>
                 </tr>
@@ -60,5 +89,5 @@ export const UserList = () => {
         </div>
       </div>
     </section>
-  )
+  );
 }
