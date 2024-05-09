@@ -39,7 +39,6 @@
     font-size: 9px;
     padding: 10px;
     text-align: center;
-
 }
 
 .userTableTdName{
@@ -100,4 +99,9 @@
     background-color: #a0aec029;
     color: black;
     border: 1px solid grey;
+}
+
+.selectSex{
+    font-size: 10px;
+    padding: 3px;
 }

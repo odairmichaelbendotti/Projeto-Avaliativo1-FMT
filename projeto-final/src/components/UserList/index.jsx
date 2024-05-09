@@ -9,6 +9,7 @@ import { CiUser } from "react-icons/ci";
 
 export const UserList = () => {
   const [pessoas, setPessoas] = useState([]);
+  const [editarUsuario, setEditarUsuario] = useState(false)
 
   useEffect(() => {
     const loadedPessoas = JSON.parse(localStorage.getItem('pessoas')) || [];
@@ -22,7 +23,7 @@ export const UserList = () => {
         <FaRecycle />
         <TbRecycleOff />
       </>)
-    } else if (pessoa.residuo == "Reciclável"){
+    } else if (pessoa.residuo == "Reciclável") {
       return <FaRecycle />
     } else {
       return <TbRecycleOff />
@@ -30,13 +31,16 @@ export const UserList = () => {
   }
 
 
-  function deleteUser(pessoa, index){
+  function deleteUser(pessoa, index) {
     const newPessoas = pessoas.filter((element, ordem) => {
       return ordem !== index
     })
     setPessoas(newPessoas)
     localStorage.setItem('pessoas', JSON.stringify(newPessoas))
+  }
 
+  function editUser(index) {
+    setEditarUsuario(prevIndex => prevIndex == index ? null : index)
   }
 
   return (
@@ -57,32 +61,39 @@ export const UserList = () => {
             </thead>
             <tbody>
               {pessoas.map((pessoa, index) => (
-                <tr key={index} className={style.userTableTrBody}>
-                  <td className={`${style.userTableTd} ${style.userTableTdName}`}>
-                    <div className={style.userTableTdProfileImg}>
-                      <i><CiUser /></i>
-                    </div>
-                    <div>
-                      <p><span>{pessoa.nome}</span></p>
-                      <p>{pessoa.email}</p>
-                    </div>
-                  </td>
-                  <td className={style.userTableTd}>{pessoa.sexo}</td>
-                  <td className={style.userTableTd}>{pessoa.cpf}</td>
-                  <td className={style.userTableTd}>{pessoa.dataNascimento}</td>
-                  <td className={style.userTableTd}>{pessoa.endereco.logradouro}</td>
-                  <td className={style.userTableTd}>
-                    <div className={style.userTableTdMaterial}>
-                      {checkResiduoUser(pessoa)}
-                    </div>
-                  </td>
-                  <td className={style.userTableTd}>
-                    <div className={style.userTableTdStatus}>
-                      <div className={style.userTableTdStatusEdit}><CiEdit /></div>
-                      <div className={style.userTableTdStatusDelete} onClick={() => deleteUser(pessoa, index)}><MdDeleteOutline /></div>
-                    </div>
-                  </td>
-                </tr>
+                <>
+                  <tr key={index} className={style.userTableTrBody}>
+                    <td className={`${style.userTableTd} ${style.userTableTdName}`}>
+                      <div className={style.userTableTdProfileImg}>
+                        <i><CiUser /></i>
+                      </div>
+                      <div>
+                        <p><span>{pessoa.nome}</span></p>
+                        <p>{pessoa.email}</p>
+                        <div>
+                          {editarUsuario === index && (
+                            <input type="email" placeholder='Informe seu novo e-mail'/>
+                          )}
+                        </div>
+                      </div>
+                    </td>
+                    <td className={`${style.userTableTd} ${style.testandoUser}`}>{pessoa.sexo}</td>
+                    <td className={style.userTableTd}>{pessoa.cpf}</td>
+                    <td className={style.userTableTd}>{pessoa.dataNascimento}</td>
+                    <td className={style.userTableTd}>{pessoa.endereco.logradouro}</td>
+                    <td className={style.userTableTd}>
+                      <div className={style.userTableTdMaterial}>
+                        {checkResiduoUser(pessoa)}
+                      </div>
+                    </td>
+                    <td className={style.userTableTd}>
+                      <div className={style.userTableTdStatus}>
+                        <div className={style.userTableTdStatusEdit} onClick={() => editUser(index, pessoa)}><CiEdit /></div>
+                        <div className={style.userTableTdStatusDelete} onClick={() => deleteUser(pessoa, index)}><MdDeleteOutline /></div>
+                      </div>
+                    </td>
+                  </tr>
+                </>
               ))}
             </tbody>
           </table>
