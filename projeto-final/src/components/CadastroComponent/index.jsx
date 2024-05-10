@@ -8,6 +8,7 @@ export const CadastroComponent = () => {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [erroNoEmail, setErroNoEmail] = useState(false);
+  const [erroNoCpf, setErroNoCpf] = useState(false)
   const [senha, setSenha] = useState('');
   const [confirmaSenha, setConfirmaSenha] = useState('');
   const [cpf, setCpf] = useState('');
@@ -31,6 +32,11 @@ export const CadastroComponent = () => {
   function verificarEmail() {
     const emailExiste = pessoasState.some(pessoa => pessoa.email.toLowerCase() === email.toLowerCase());
     setErroNoEmail(emailExiste);
+  }
+
+  function verificarCpf() {
+    const cpfExiste = pessoasState.some(pessoa => pessoa.cpf.toLowerCase() === cpf.toLowerCase());
+    setErroNoCpf(cpfExiste);
   }
 
   function cadastrar() {
@@ -135,7 +141,12 @@ export const CadastroComponent = () => {
             <label htmlFor="confirmpassword">Confirme a senha</label>
             <input type="password" id='confirmpassword' placeholder='Confirme sua senha' value={confirmaSenha} onChange={(e) => setConfirmaSenha(e.target.value)} required />
           </div>
-          <button className={style.loginAreaButtonLogin} onClick={podeAvancar}>Próximo</button>
+          {erroNoEmail == true ? (
+            <button className={style.loginAreaButtonLoginVerifique}>Verifique seu cadastro</button>
+          ) : (
+            <button className={style.loginAreaButtonLogin} onClick={podeAvancar}>Próximo</button>
+          )}
+
         </div>
 
         {/* Seção 2 - Endereço Completo (Preenchido automaticamente pelo CEP) */}
@@ -145,15 +156,15 @@ export const CadastroComponent = () => {
             <input type="text" id='cep' placeholder='Digite seu CEP' value={cep} onChange={(e) => setCep(e.target.value)} onBlur={handleCepBlur} required />
           </div>
 
-            <div className={style.loginComponentLabelInputArea}>
-                <label htmlFor="bairro">Bairro</label>
-                <input type="text" id='bairro' value={bairro}
-                  readOnly />
-            </div>
-            <div className={style.loginComponentLabelInputArea}>
-              <label htmlFor="cidade">Cidade</label>
-              <input type="text" id='cidade' value={cidade} readOnly />
-            </div>
+          <div className={style.loginComponentLabelInputArea}>
+            <label htmlFor="bairro">Bairro</label>
+            <input type="text" id='bairro' value={bairro}
+              readOnly />
+          </div>
+          <div className={style.loginComponentLabelInputArea}>
+            <label htmlFor="cidade">Cidade</label>
+            <input type="text" id='cidade' value={cidade} readOnly />
+          </div>
 
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="estado">Estado</label>
@@ -172,7 +183,7 @@ export const CadastroComponent = () => {
 
         {/* Seção 3 - CPF, Sexo e Botão de Cadastro */}
         <div className={activeSection === 3 ? style.sectionVisible : style.sectionHidden}>
-        <div className={style.loginComponentLabelInputArea}>
+          <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="latitude">Latitude:</label>
             <input type="text" id='latitude' value={latitude} onChange={(e) => setLatitude(e.target.value)} />
           </div>
@@ -183,7 +194,8 @@ export const CadastroComponent = () => {
           </div>
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="cpf">CPF</label>
-            <input type="text" id='cpf' value={cpf} onChange={(e) => setCpf(e.target.value)} required />
+            <input type="text" id='cpf' value={cpf} onChange={(e) => setCpf(e.target.value)} onBlur={verificarCpf} required />
+            {erroNoCpf && <div className={style.emailErro}><p>CPF já cadastrado.</p></div>}
           </div>
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="sexo">Sexo</label>
@@ -207,7 +219,15 @@ export const CadastroComponent = () => {
               <option value="Ambos">Ambos</option>
             </select>
           </div>
-          <button className={style.loginAreaButtonLogin} onClick={cadastrar}>Cadastrar</button>
+
+          {erroNoCpf == true ? (
+            <button className={style.loginAreaButtonLoginVerifique}>Verifique seu cadastro</button>
+          ): (
+            <button className={style.loginAreaButtonLogin} onClick={cadastrar}>Cadastrar</button>
+          )}
+
+
+
         </div>
       </div>
     </section>

@@ -33,7 +33,6 @@ export const DashboardUser = () => {
     function dataInfos() {
         const dataAtual = new Date();
         const novaDiaSolicitacao = `${dataAtual.getDate()} de ${dataAtual.toLocaleString('pt-BR', { month: 'long' })}`;
-        console.log(position)
         setColetar([...coletar, {
             cpf: usuario.cpf,
             solicitacao: novaDiaSolicitacao,
@@ -134,8 +133,7 @@ export const DashboardUser = () => {
                                             {tipoLixo(item.tipoResiduo)}
                                         </td>
                                         <td className={`${style.dashboardUserInterData} ${style.dashboardUserInterDataChange} ${style.dashboardUserInterDataChangeIcon}`}>
-                                            <i><CiSquareCheck /></i>
-                                            <i><MdDeleteOutline onClick={() => deletar(index)} /></i>
+                                            <i><CiSquareCheck onClick={() => deletar(index)} /></i>
                                         </td>
                                     </tr>
                                 ))}

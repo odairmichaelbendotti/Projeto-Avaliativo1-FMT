@@ -38,7 +38,8 @@ O site possui um único usuário administrador (`odair.michael@hotmail.com`, sen
 - Implementação de responsividade completa para adaptação em diferentes tamanhos de tela.
 - Aumento das funcionalidades administrativas para gestão mais eficiente dos pontos de coleta.
 - Inclusão de funcionalidades de relatórios sobre a coleta e reciclagem.
-- Adição de 
+- Incluão de botão de voltar para usuário alterar suas informações durante o cadastro.
+- Inserir renderização de um componente indicando que e-mail e CPF já existem ao invés de informar por meio de um alert.
 
 ## Autor
 Odair Michael Bendotti
