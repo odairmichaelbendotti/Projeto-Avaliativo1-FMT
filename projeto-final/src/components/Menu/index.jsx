@@ -54,7 +54,7 @@ export const Menu = () => {
         <div className={style.sideMenu}>
             <ContainerLogo>
                 <div className={style.logo}>
-                    <img src="../../../public/logo-center.png" alt="" />
+                    <img src="../../public/logo-center.png" alt="" />
                 </div>
                 <div className={style.linha}>
                     <hr className={style.hr} />
