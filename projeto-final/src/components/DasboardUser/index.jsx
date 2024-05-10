@@ -48,11 +48,11 @@ export const DashboardUser = () => {
 
     function tipoLixo(tipoResiduo) {
         if (tipoResiduo === 'Reciclável') {
-            return <FaRecycle />;
+            return <i><FaRecycle /></i>
         } else if (tipoResiduo === 'Não reciclável') {
-            return <TbRecycleOff />;
+            return <i><TbRecycleOff /></i>
         } else {
-            return <><FaRecycle /><TbRecycleOff /></>;
+            return <><i><FaRecycle /></i><i><TbRecycleOff /></i></>;
         }
     }
 
@@ -95,11 +95,14 @@ export const DashboardUser = () => {
                         </div>
                         {coletar.length < 6 ? (
                             <div className={`${style.dashboardUserProfileInternBtnOne}`} onClick={dataInfos}>
-                                <CiAlignRight />
+                                <i><CiAlignRight /></i>
                                 <p>Solicitar coleta</p>
                             </div>
                         ) : (
-                            limiteAtingido()
+                            <div className={`${style.dashboardUserProfileInternBtnOneColor} ${style.lockColor}`}>
+                            <i><GiPadlock /></i>
+                            <p>Solicitar coleta</p>
+                        </div>
                         )}
                     </div>
                 </div>
@@ -107,7 +110,7 @@ export const DashboardUser = () => {
             <div className={style.dashboardUserDetailsContainer}>
                 <div className={style.dashboardUserOrders}>
                     <div className={style.dashboardUserOrdersTitleTwo}>
-                        <CiViewList />
+                        <i><CiViewList /></i>
                         <p>Coletas solicitadas</p>
                     </div>
                     <div className={style.dashboardUserOrdersGroup}>
@@ -131,8 +134,8 @@ export const DashboardUser = () => {
                                             {tipoLixo(item.tipoResiduo)}
                                         </td>
                                         <td className={`${style.dashboardUserInterData} ${style.dashboardUserInterDataChange} ${style.dashboardUserInterDataChangeIcon}`}>
-                                            <CiSquareCheck />
-                                            <MdDeleteOutline onClick={() => deletar(index)} />
+                                            <i><CiSquareCheck /></i>
+                                            <i><MdDeleteOutline onClick={() => deletar(index)} /></i>
                                         </td>
                                     </tr>
                                 ))}

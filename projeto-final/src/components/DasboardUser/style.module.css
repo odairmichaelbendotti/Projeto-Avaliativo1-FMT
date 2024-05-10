@@ -278,3 +278,31 @@
     margin-top: 5px;
     color: #FFF;
 }
+
+.dashboardUserProfileInternBtnOneColor{
+    padding: 1px 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    justify-content: space-between;
+    padding: 10px 15px;
+    font-weight: bold;
+    border-radius: 20px;
+    margin-left: 50px;
+    color: red;
+}
+
+.dashboardUserProfileInternBtnOneColor i{
+    font-size: 10px;
+    padding: 5px;
+    background-color:  red;
+    border-radius: 5px;
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

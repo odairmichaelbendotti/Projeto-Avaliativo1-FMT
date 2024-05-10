@@ -62,13 +62,17 @@ export const Menu = () => {
             <nav className={style.sideMenuNav}>
                 <ul>
                     <Link to='dashboard'><li className={style.sideMenuItems}>
-                        <i><LuLayoutDashboard /></i>
+                    <div className={style.ordemItem}>
+                        <LuLayoutDashboard />
                         <p>Dashboard</p>
+                    </div>
                     </li></Link>
                     {currentUser && currentUser.tipoUsuario === "admin" && (
                         <Link to='beneficiarios'><li className={style.sideMenuItems}>
-                            <i><FaHouseUser /></i>
-                            <p>Beneficiários</p>
+                            <div className={style.ordemItem}>
+                                <FaHouseUser />
+                                <p>Beneficiários</p>
+                            </div>
                         </li></Link>
                     )}
                 </ul>
@@ -76,15 +80,19 @@ export const Menu = () => {
                 <ul>
                     {!isUserLoggedIn && (
                         <Link to='/login'><li className={style.sideMenuItems}>
-                            <i><FaRegUserCircle /></i>
+                        <div className={style.ordemItem}>
+                            <FaRegUserCircle />
                             <p>Login</p>
+                        </div>
                         </li></Link>
                     )}
                     {isUserLoggedIn && currentUser && (
                         <>
                             <li className={style.sideMenuItems} onClick={logout}>
-                                <i><CiLogout /></i>
+                            <div className={style.ordemItem}>
+                                <CiLogout />
                                 <p>Sair</p>
+                            </div>
                             </li>
                             {isUserLoggedIn && currentUser && currentUser.endereco && (
                                 <div className={style.divUserInfos}>
@@ -98,7 +106,7 @@ export const Menu = () => {
                                         </div>
                                         <div className={style.itensCardUserMenu}>
                                             <MdOutlineLocationCity />
-                                            <p className={style.divUserInfosResto}>{currentUser.endereco.cidade} - {currentUser.endereco.uf}</p>
+                                            <p className={style.divUserInfosResto}>{currentUser.endereco.cidade}</p>
                                         </div>
                                     </div>
                                 </div>
