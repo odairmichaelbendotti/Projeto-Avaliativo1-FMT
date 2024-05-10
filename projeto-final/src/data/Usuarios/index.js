@@ -1,31 +1,5 @@
 export let pessoas = [
     {
-        nome: "João Silva",
-        sexo: "Masculino",
-        residuo: "Reciclável",
-        cpf: "123.456.789-00",
-        dataNascimento: "01/01/1990",
-        email: "joao.silva@example.com",
-        senha: "senha123",
-        endereco: {
-            cep: "88058-400",
-            logradouro: "Rua das Algas",
-            complemento: "Bloco 3 Apt 204",
-            numero: "930",
-            bairro: "Jurerê Internacional",
-            cidade: "Florianópolis",
-            uf: "SC",
-            ibge: "4205407",
-            gia: "",
-            ddd: "48",
-            siafi: "8105"
-        },
-        estaLogado: "false",
-        tipoUsuario: "normal",
-        latitude: "-27.4366",
-        longitude: "-48.4832"
-    },
-    {
         nome: "Maria Souza",
         sexo: "Feminino",
         residuo: "Reciclável",
@@ -50,6 +24,32 @@ export let pessoas = [
         tipoUsuario: "normal",
         latitude: "-27.5991",
         longitude: "-48.5204"
+    },
+    {
+        nome: "João Silva",
+        sexo: "Masculino",
+        residuo: "Reciclável",
+        cpf: "123.456.789-00",
+        dataNascimento: "01/01/1990",
+        email: "joao.silva@example.com",
+        senha: "senha123",
+        endereco: {
+            cep: "88058-400",
+            logradouro: "Rua das Algas",
+            complemento: "Bloco 3 Apt 204",
+            numero: "930",
+            bairro: "Jurerê Internacional",
+            cidade: "Florianópolis",
+            uf: "SC",
+            ibge: "4205407",
+            gia: "",
+            ddd: "48",
+            siafi: "8105"
+        },
+        estaLogado: "false",
+        tipoUsuario: "normal",
+        latitude: "-27.4366",
+        longitude: "-48.4832"
     },
     {
         nome: "Pedro Santos",

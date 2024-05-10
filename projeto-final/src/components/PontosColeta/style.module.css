@@ -30,6 +30,7 @@
 .dashboardUserDetailsContainer{
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 
 .dashboardUserProfileIntern{
@@ -210,14 +211,15 @@
 
 
 .dashboardUserMap{
-    width: 49%;
+    width: 100%;
     background-color: #FFF;
     border-radius: 15px;
     padding: 30px 40px;
 }
 
 .dashboardUserOrders{
-    width: 49%;
+    width: 100%;
+    height: 100%;
     background-color: #FFF;
     border-radius: 15px;
     padding: 30px 40px;
@@ -308,7 +310,7 @@
 }
 
 .testandoLol{
-    height: 300px;
+    height: 500px;
     width: 100%;
     border-radius: 25px;
   }

@@ -13,6 +13,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { MdOutlineLocationCity } from "react-icons/md";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { CiViewList } from "react-icons/ci";
+import { CiLocationOn } from "react-icons/ci";
 
 export const Menu = () => {
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -62,10 +63,10 @@ export const Menu = () => {
             <nav className={style.sideMenuNav}>
                 <ul>
                     <Link to='dashboard'><li className={style.sideMenuItems}>
-                    <div className={style.ordemItem}>
-                        <LuLayoutDashboard />
-                        <p>Dashboard</p>
-                    </div>
+                        <div className={style.ordemItem}>
+                            <LuLayoutDashboard />
+                            <p>Dashboard</p>
+                        </div>
                     </li></Link>
                     {currentUser && currentUser.tipoUsuario === "admin" && (
                         <Link to='beneficiarios'><li className={style.sideMenuItems}>
@@ -75,24 +76,33 @@ export const Menu = () => {
                             </div>
                         </li></Link>
                     )}
+                    {currentUser && currentUser.tipoUsuario === "admin" && (
+                        <Link to='informacoes'><li className={style.sideMenuItems}>
+                            <div className={style.ordemItem}>
+                                <CiLocationOn />
+                                <p>Pontos</p>
+                            </div>
+                        </li></Link>
+                    )}
                 </ul>
+
                 <h2 className={style.titles}>Minha conta</h2>
                 <ul>
                     {!isUserLoggedIn && (
                         <Link to='/login'><li className={style.sideMenuItems}>
-                        <div className={style.ordemItem}>
-                            <FaRegUserCircle />
-                            <p>Login</p>
-                        </div>
+                            <div className={style.ordemItem}>
+                                <FaRegUserCircle />
+                                <p>Login</p>
+                            </div>
                         </li></Link>
                     )}
                     {isUserLoggedIn && currentUser && (
                         <>
                             <li className={style.sideMenuItems} onClick={logout}>
-                            <div className={style.ordemItem}>
-                                <CiLogout />
-                                <p>Sair</p>
-                            </div>
+                                <div className={style.ordemItem}>
+                                    <CiLogout />
+                                    <p>Sair</p>
+                                </div>
                             </li>
                             {isUserLoggedIn && currentUser && currentUser.endereco && (
                                 <div className={style.divUserInfos}>

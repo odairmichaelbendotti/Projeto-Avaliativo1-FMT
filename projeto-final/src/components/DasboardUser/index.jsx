@@ -64,7 +64,7 @@ export const DashboardUser = () => {
         );
     }
 
-    const position = [parseFloat(usuario.latitude), parseFloat(usuario.longitude)]
+    const position1 = [parseFloat(usuario.latitude), parseFloat(usuario.longitude)]
 
     return (
         <div className={style.dashboardUserContainer}>
@@ -150,12 +150,12 @@ export const DashboardUser = () => {
                         <p>Local de coleta</p>
                     </div>
                     <div className={style.dashboardUserOrdersGroup}>
-                        <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+                    <MapContainer center={position1} zoom={13} scrollWheelZoom={false} className={`${style.testandoLol} mapaPequeno`}>
                             <TileLayer
                                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             />
-                            <Marker position={position}>
+                            <Marker position={position1}>
                                 <Popup>
                                 </Popup>
                             </Marker>
