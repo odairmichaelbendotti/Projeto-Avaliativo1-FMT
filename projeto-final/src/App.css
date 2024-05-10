@@ -19,3 +19,9 @@
   background-color: rgb(245, 245, 245);
   padding: 20px 30px;
 }
+
+.leaflet-container{
+  height: 300px;
+  width: 100%;
+  border-radius: 25px;
+}

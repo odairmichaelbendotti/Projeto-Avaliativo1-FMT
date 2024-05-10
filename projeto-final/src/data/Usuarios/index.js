@@ -21,7 +21,9 @@ export let pessoas = [
             siafi: "8105"
         },
         estaLogado: "false",
-        tipoUsuario: "normal"
+        tipoUsuario: "normal",
+        latitude: "-27.4366",
+        longitude: "-48.4832"
     },
     {
         nome: "Maria Souza",
@@ -45,7 +47,9 @@ export let pessoas = [
             siafi: "8105"
         },
         estaLogado: "false",
-        tipoUsuario: "normal"
+        tipoUsuario: "normal",
+        latitude: "-27.5991",
+        longitude: "-48.5204"
     },
     {
         nome: "Pedro Santos",
@@ -69,7 +73,9 @@ export let pessoas = [
             siafi: "8105"
         },
         estaLogado: "false",
-        tipoUsuario: "normal"
+        tipoUsuario: "normal",
+        latitude: "-27.6761",
+        longitude: "-48.4974"
     },
     {
         nome: "Ana Oliveira",
@@ -93,55 +99,9 @@ export let pessoas = [
             siafi: "8105"
         },
         estaLogado: "false",
-        tipoUsuario: "normal"
-    },
-    {
-        nome: "Carlos Pereira",
-        sexo: "Masculino",
-        residuo: "Ambos",
-        cpf: "789.123.456-00",
-        dataNascimento: "05/03/1995",
-        email: "carlos.pereira@example.com",
-        senha: "senhacarlos",
-        endereco: {
-            cep: "88036-570",
-            logradouro: "Rua Lauro Linhares",
-            complemento: "Apt 303, Bloco B",
-            numero: "2123",
-            bairro: "Trindade",
-            cidade: "Florianópolis",
-            uf: "SC",
-            ibge: "4205407",
-            gia: "",
-            ddd: "48",
-            siafi: "8105"
-        },
-        estaLogado: "false",
-        tipoUsuario: "normal"
-    },
-    {
-        nome: "Amanda Costa",
-        sexo: "Feminino",
-        residuo: "Ambos",
-        cpf: "321.987.654-00",
-        dataNascimento: "20/11/1989",
-        email: "amanda.costa@example.com",
-        senha: "senhaamanda",
-        endereco: {
-            cep: "88037-240",
-            logradouro: "Rua Delminda Silveira",
-            complemento: "Apto 201",
-            numero: "750",
-            bairro: "Agronômica",
-            cidade: "Florianópolis",
-            uf: "SC",
-            ibge: "4205407",
-            gia: "",
-            ddd: "48",
-            siafi: "8105"
-        },
-        estaLogado: "false",
-        tipoUsuario: "normal"
+        tipoUsuario: "normal",
+        latitude: "-27.7131",
+        longitude: "-48.5532"
     },
     {
         nome: "Odair Michael Bendotti",
@@ -165,7 +125,9 @@ export let pessoas = [
             siafi: "8105"
         },
         estaLogado: "false",
-        tipoUsuario: "admin"
+        tipoUsuario: "admin",
+        latitude: "-27.66373248547449",
+        longitude: "-48.54048765676434"
     }
 ];
 

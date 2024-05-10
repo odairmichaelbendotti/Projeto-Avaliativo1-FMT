@@ -7,6 +7,8 @@ import { TbRecycleOff } from "react-icons/tb";
 import { MdDeleteOutline } from "react-icons/md";
 import { BsFillPinMapFill } from "react-icons/bs";
 import { GiPadlock } from "react-icons/gi";
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import 'leaflet/dist/leaflet.css'
 
 export const DashboardUser = () => {
     const navigate = useNavigate();
@@ -31,6 +33,7 @@ export const DashboardUser = () => {
     function dataInfos() {
         const dataAtual = new Date();
         const novaDiaSolicitacao = `${dataAtual.getDate()} de ${dataAtual.toLocaleString('pt-BR', { month: 'long' })}`;
+        console.log(position)
         setColetar([...coletar, {
             cpf: usuario.cpf,
             solicitacao: novaDiaSolicitacao,
@@ -60,6 +63,8 @@ export const DashboardUser = () => {
             </div>
         );
     }
+
+    const position = [parseFloat(usuario.latitude), parseFloat(usuario.longitude)]
 
     return (
         <div className={style.dashboardUserContainer}>
@@ -142,7 +147,16 @@ export const DashboardUser = () => {
                         <p>Local de coleta</p>
                     </div>
                     <div className={style.dashboardUserOrdersGroup}>
-                        {/* Aqui será incluído um mapa ou outras informações sobre o local de coleta */}
+                        <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+                            <TileLayer
+                                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            />
+                            <Marker position={position}>
+                                <Popup>
+                                </Popup>
+                            </Marker>
+                        </MapContainer>
                     </div>
                 </div>
             </div>

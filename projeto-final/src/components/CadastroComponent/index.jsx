@@ -20,6 +20,8 @@ export const CadastroComponent = () => {
   const [logradouro, setLogradouro] = useState('');
   const [numero, setNumero] = useState('');
   const [dataNascimento, setDataNascimento] = useState('');
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
 
   useEffect(() => {
     const loadedPessoas = JSON.parse(localStorage.getItem('pessoas')) || [];
@@ -33,14 +35,14 @@ export const CadastroComponent = () => {
 
   function cadastrar() {
     const novoUsuario = {
-      nome, email, senha, cep, cidade, bairro, estado, cpf, sexo, residuo, dataNascimento
+      nome, email, senha, cep, cidade, bairro, estado, cpf, sexo, residuo, dataNascimento, latitude, longitude
     };
 
     const atualizadoPessoas = [...pessoasState, novoUsuario];
     setPessoas(atualizadoPessoas);
     localStorage.setItem('pessoas', JSON.stringify(atualizadoPessoas));
     alert('Cadastro realizado com sucesso!');
-    setActiveSection(1); 
+    setActiveSection(1);
   }
 
   function podeAvancar() {
@@ -89,6 +91,8 @@ export const CadastroComponent = () => {
       residuo,
       cpf,
       dataNascimento,
+      latitude,
+      longitude,
       endereco: {
         cep,
         cidade,
@@ -98,14 +102,14 @@ export const CadastroComponent = () => {
         numero
       }
     };
-  
+
     const atualizadoPessoas = [...pessoasState, novoUsuario];
     setPessoas(atualizadoPessoas);
     localStorage.setItem('pessoas', JSON.stringify(atualizadoPessoas));
-  
+
     alert('Cadastro realizado com sucesso!');
     setActiveSection(1);
-}
+  }
 
   return (
     <section className={style.loginContainer}>
@@ -140,14 +144,17 @@ export const CadastroComponent = () => {
             <label htmlFor="cep">CEP</label>
             <input type="text" id='cep' placeholder='Digite seu CEP' value={cep} onChange={(e) => setCep(e.target.value)} onBlur={handleCepBlur} required />
           </div>
-          <div className={style.loginComponentLabelInputArea}>
-            <label htmlFor="bairro">Bairro</label>
-            <input type="text" id='bairro' value={bairro} readOnly />
-          </div>
-          <div className={style.loginComponentLabelInputArea}>
-            <label htmlFor="cidade">Cidade</label>
-            <input type="text" id='cidade' value={cidade} readOnly />
-          </div>
+
+            <div className={style.loginComponentLabelInputArea}>
+                <label htmlFor="bairro">Bairro</label>
+                <input type="text" id='bairro' value={bairro}
+                  readOnly />
+            </div>
+            <div className={style.loginComponentLabelInputArea}>
+              <label htmlFor="cidade">Cidade</label>
+              <input type="text" id='cidade' value={cidade} readOnly />
+            </div>
+
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="estado">Estado</label>
             <input type="text" id='estado' value={estado} readOnly />
@@ -155,16 +162,25 @@ export const CadastroComponent = () => {
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="logradouro">Logradouro</label>
             <input type="text" id='logradouro' value={logradouro} readOnly />
-          </div>    
+          </div>
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="numero">Número</label>
             <input type="number" id='numero' value={numero} onChange={(e) => setNumero(e.target.value)} />
-          </div>       
+          </div>
           <button className={style.loginAreaButtonLogin} onClick={podeAvancar}>Próximo</button>
         </div>
 
         {/* Seção 3 - CPF, Sexo e Botão de Cadastro */}
         <div className={activeSection === 3 ? style.sectionVisible : style.sectionHidden}>
+        <div className={style.loginComponentLabelInputArea}>
+            <label htmlFor="latitude">Latitude:</label>
+            <input type="text" id='latitude' value={latitude} onChange={(e) => setLatitude(e.target.value)} />
+          </div>
+
+          <div className={style.loginComponentLabelInputArea}>
+            <label htmlFor="longitude">Longitude:</label>
+            <input type="text" id='longitude' value={longitude} onChange={(e) => setLongitude(e.target.value)} />
+          </div>
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="cpf">CPF</label>
             <input type="text" id='cpf' value={cpf} onChange={(e) => setCpf(e.target.value)} required />
@@ -180,7 +196,7 @@ export const CadastroComponent = () => {
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="nascimento">Data de nascimento</label>
             <input type="text" id='nascimento' value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} />
-          </div> 
+          </div>
 
           <div className={style.loginComponentLabelInputArea}>
             <label htmlFor="residuo">Tipo de Resíduo</label>
