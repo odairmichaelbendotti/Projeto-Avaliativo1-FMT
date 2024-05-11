@@ -14,7 +14,7 @@
 2. Acesso ao vídeo: https://drive.google.com/drive/folders/1vXSRovL0U9uxT-XgfsqAcqgBgTYyhxV6?usp=sharing
 3. Repositório GitHub: https://github.com/odairmichaelbendotti/Projeto-Avaliativo1-FMT.git
  3.1. Conforme solicitado, compartilhado somente com Bruno-Costa-fig e lab365-operacao
-4. Live do site pelo Vercel: 
+4. Live do site pelo Vercel: https://recicla365-projeto-avaliativo-k4i3vs01g.vercel.app
 
 
 # Recicla365
